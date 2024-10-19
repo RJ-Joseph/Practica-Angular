@@ -1,1 +1,71 @@
-<p>dbz works!</p>
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Tipos Dragon Ball Z </h2>
+
+  <div class="row mb-4">
+    <div class="col-md-6 mx-auto">
+      <div class="card">
+
+        <div class="row g-3">
+
+          <!-- Búsqueda -->
+          <div class="col-md-12">
+            <div class="input-group">
+              <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Busqueda..."
+                (keyup.enter)="onSearch()">
+              <button class="btn btn-primary" type="button" [disabled]="isLoading" (click)="onSearch()">
+                <i class="fas fa-search"></i> Buscar
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- No results message -->
+  <div *ngIf="noResults && !isLoading" class="alert alert-info text-center my-4">
+    No se encontraron resultados para la búsqueda
+  </div>
+
+  <!-- Results -->
+  <ng-container *ngIf="!isLoading && !noResults">
+    <app-pagination *ngIf="!searchTerm && !selectedRace" [currentPage]="currentPage" [totalPages]="totalPages"
+      (pageChange)="onPageChange($event)">
+    </app-pagination>
+
+    <app-card-list [items]="characters" (cardClick)="onCharacterSelect($event)">
+    </app-card-list>
+
+    <app-pagination *ngIf="!searchTerm && !selectedRace" [currentPage]="currentPage" [totalPages]="totalPages"
+      (pageChange)="onPageChange($event)">
+    </app-pagination>
+  </ng-container>
+
+  <!--  Modal -->
+  <div class="modal-dialog modal-dialog-scrollable " [class.show]="selectedCharacter" id="characterModal" tabindex="-1"
+    [style.display]="selectedCharacter ? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{selectedCharacter?.name}}</h5>
+          <button type="button" class="btn-close" (click)="selectedCharacter = null"></button>
+        </div>
+        <div class="modal-body" *ngIf="selectedCharacter">
+          <div class="text-center mb-3">
+            <img [src]="selectedCharacter.image" [alt]="selectedCharacter.name" class="img-fluid rounded">
+          </div>
+          <p><strong>Ki:</strong> {{selectedCharacter.ki}}</p>
+          <p><strong>Max Ki:</strong> {{selectedCharacter.maxKi}}</p>
+          <p><strong>Raza:</strong> {{selectedCharacter.race}}</p>
+          <p><strong>Genero:</strong> {{selectedCharacter.gender}}</p>
+          <p><strong>Afiliciación:</strong> {{selectedCharacter.affiliation}}</p>
+          <p><strong>Descripción:</strong> {{selectedCharacter.description}}</p>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "practica-angular": {
+    "Pratica-de-mi-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/practica-angular",
+            "outputPath": "dist/pratica-de-mi-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -24,16 +24,25 @@
               {
                 "glob": "**/*",
                 "input": "public"
+
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/animate.css/animate.min.css"
+
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+             
+
             ],
             "server": "src/main.server.ts",
             "prerender": true,
@@ -69,10 +78,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "practica-angular:build:production"
+              "buildTarget": "Pratica-de-mi-app:build:production"
             },
             "development": {
-              "buildTarget": "practica-angular:build:development"
+              "buildTarget": "Pratica-de-mi-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -104,6 +113,6 @@
     }
   },
   "cli": {
-    "analytics": "edc0587b-4dbf-44c4-8758-296798622b60"
+    "analytics": "cba19195-e6ad-4cef-a71d-5c77c29ae780"
   }
 }

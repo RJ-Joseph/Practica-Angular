@@ -1,0 +1,67 @@
+<!-- Navegación Superior -->
+<nav class="navbar navbar-expand-lg  bg-success shadow-sm">
+  <div class="container">
+    <!-- Logo/Nombre -->
+    <a class="navbar-brand text-uppercase" routerLink="/">
+      
+      Apis 
+    </a>
+
+
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+       
+        <li class="nav-item mx-2">
+          <a class="nav-link btn btn-outline-light btn-sm rounded-pill px-3" 
+             routerLink="/home" routerLinkActive="active">
+            <i class=""></i> Inicio
+          </a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link btn btn-outline-light btn-sm rounded-pill px-3 " 
+             routerLink="/dbz" routerLinkActive="active">
+            <i class=""></i> DBZ
+          </a>
+        </li>
+        
+        <li class="nav-item mx-2">
+          <a class="nav-link btn btn-outline-light btn-sm rounded-pill px-3 " 
+             routerLink="/cocteles" routerLinkActive="active">
+            <i class=""></i> Cócteles
+          </a>
+        </li>
+        
+      <ng-container *ngIf="user$ |async ">
+        <li class="nav-item dropdown mx-2">
+          <a class="nav-link dropdown-toggle btn btn-outline-light btn-sm rounded-pill px-3" 
+             href="#" id="navbarDropdown" role="button" 
+             data-bs-toggle="dropdown" aria-expanded="false">
+            <i class=""></i> Mi API
+          </a>
+          <div class="dropdown-menu dropdown-menu-end animate slideIn shadow" 
+               aria-labelledby="navbarDropdown">
+            
+          </div>
+        </li>
+      </ng-container>
+        
+        <li class="nav-item mx-2">
+          <ng-container *ngIf="user$ |async as user; else showLogin" >
+<div class="d-flex align-items-center ">
+<img src="user.photoURL" alt="user.displayName" class="img-fluid rounded-circle" style ="width: 40px; height: 40px;">
+<span class="ms-2">{{user.displayName}}</span>
+<button class="btn-outline-danger ms-2" (click)="logout()" type="button">
+<i class="bi bi-box-arrow-left"></i>Logout
+</button>
+</div>
+          </ng-container>
+          <ng-template #showLogin>
+
+          <button class="nav-link  btn btn-outline-danger btn-sm rounded-pill px-3 "(click)="onGoogleLogin()" type="button"><i class="bi bi-google"></i>Login</button>
+        </ng-template>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
